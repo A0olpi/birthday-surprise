@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Birthday Heart</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #fff7e6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      overflow: hidden;
+      flex-direction: column;
+    }
+
+    /* Click Me button */
+    #clickButton {
+      background: linear-gradient(135deg, #FFD966, #FFA500);
+      border: none;
+      color: white;
+      padding: 20px 50px;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: transform 0.2s, box-shadow 0.2s;
+      z-index: 10;
+    }
+
+    #clickButton:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+    }
+
+    /* Heart style */
+    .heart {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      background-color: #FFA500;
+      transform: rotate(-45deg);
+      animation: float 6s infinite;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      background-color: #FFA500;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -25px;
+      left: 0;
+    }
+
+    .heart::after {
+      top: 0;
+      left: 25px;
+    }
+
+    /* Floating animation */
+    @keyframes float {
+      0% { transform: translateY(100vh) rotate(-45deg); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translateY(-100vh) rotate(-45deg); opacity: 0; }
+    }
+
+    /* Birthday message in front */
+    #birthdayMessage {
+      position: relative;
+      font-size: 36px;
+      font-weight: bold;
+      color: #FF8C00;
+      text-align: center;
+      z-index: 20;
+      text-shadow: 1px 1px 5px #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Click Me button -->
+  <button id="clickButton" onclick="showHearts()">Click Me</button>
+
+  <!-- Birthday message -->
+  <div id="birthdayMessage" style="display:none;">Happy Birthday, Xin! 🎉</div>
+
+  <script>
+    function showHearts() {
+      document.getElementById('clickButton').style.display = 'none';
+      document.getElementById('birthdayMessage').style.display = 'block';
+
+      // Create multiple hearts
+      for (let i = 0; i < 30; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.style.left = Math.random() * window.innerWidth + 'px';
+        heart.style.animationDuration = (3 + Math.random() * 5) + 's';
+        heart.style.width = heart.style.height = (20 + Math.random() * 50) + 'px';
+        document.body.appendChild(heart);
+      }
+    }
+  </script>
+
+</body>
+</html>
